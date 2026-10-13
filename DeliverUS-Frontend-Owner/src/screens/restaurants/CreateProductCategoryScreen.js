@@ -7,14 +7,10 @@ import * as GlobalStyles from '../../styles/GlobalStyles'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import InputItem from '../../components/InputItem'
 import TextRegular from '../../components/TextRegular'
-import defaultProductImage from '../../../assets/product.jpeg'
-import DropDownPicker from 'react-native-dropdown-picker'
 import { ErrorMessage, Formik } from 'formik'
 import TextError from '../../components/TextError'
 
 export default function CreateProductCategoryScreen ({ navigation, route }) {
-  const [open, setOpen] = useState(false)
-  const [productCategories, setProductCategories] = useState([])
   const [backendErrors, setBackendErrors] = useState()
 
   const initialProductValues = { name: null, description: null, price: null, order: null, restaurantId: route.params.id, productCategoryId: null, availability: true }
@@ -37,12 +33,12 @@ export default function CreateProductCategoryScreen ({ navigation, route }) {
     try {
       const createdProductCategory = await create(values)
       showMessage({
-        message: `Product ${createdProductCategory.name} succesfully created`,
+        message: `Product category ${createdProductCategory.name} succesfully created`,
         type: 'success',
         style: GlobalStyles.flashStyle,
         titleStyle: GlobalStyles.flashTextStyle
       })
-      navigation.navigate('RestaurantDetailScreen', { id: route.params.id, dirty: true })
+      navigation.navigate('ProductCategoriesScreen', { id: route.params.id, dirty: true })
     } catch (error) {
       console.log(error)
       setBackendErrors(error.errors)
