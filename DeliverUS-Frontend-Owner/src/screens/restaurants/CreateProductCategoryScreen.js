@@ -31,7 +31,7 @@ export default function CreateProductCategoryScreen ({ navigation, route }) {
         style: GlobalStyles.flashStyle,
         titleStyle: GlobalStyles.flashTextStyle
       })
-      navigation.navigate('ProductCategoriesScreen', { id: route.params.id, dirty: true })
+      navigation.navigate('RestaurantDetailScreen', { id: route.params.id, dirty: true })
     } catch (error) {
       console.log(error)
       setBackendErrors(error.errors)
