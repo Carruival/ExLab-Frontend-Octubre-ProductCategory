@@ -53,12 +53,11 @@ export default function EditProductScreen({ navigation, route }) {
         const fetchedRestaurant = await getCategoriesByRestaurant(route.params.id)
         const fechtProductCatReshaped = fetchedRestaurant.map((e) => {
           return {
-            label: e.label,
-            value: e.name
+            label: e.name,
+            value: e.id
           }
-        }
-        )
-        setProductCategories(fetchedRestaurant)
+        })
+        setProductCategories(fechtProductCatReshaped)
       } catch (error) {
         showMessage({
           message: `There was an error while retrieving restaurant details (id ${route.params.id}). ${error}`,
