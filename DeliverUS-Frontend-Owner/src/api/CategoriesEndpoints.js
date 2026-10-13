@@ -1,6 +1,6 @@
 import { get, post, destroy } from './helpers/ApiRequestsHelper'
 
-function getCategoryByRestaurant (id) {
+function getCategoriesByRestaurant (id) {
   return get(`/productCategories/restaurants/${id}`)
 }
 
@@ -20,4 +20,4 @@ function remove (restaurantId, id) {
   return destroy(`/productCategories/${restaurantId}/categories/${id}`)
 }
 
-export { getCategoryByRestaurant, getProductsByCategory, getCategory, create, remove }
+export { getCategoriesByRestaurant, getProductsByCategory, getCategory, create, remove }

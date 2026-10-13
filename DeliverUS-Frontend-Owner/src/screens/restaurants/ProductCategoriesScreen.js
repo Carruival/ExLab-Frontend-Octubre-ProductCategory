@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import TextRegular from '../../components/TextRegular'
 import { StyleSheet, FlatList, Pressable, View } from 'react-native'
 import DeleteModal from '../../components/DeleteModal'
-import { getCategoryByRestaurant, getProductsByCategory, getCategory, create, remove } from '../../api/CategoriesEndpoints'
+import { getCategoriesByRestaurant } from '../../api/CategoriesEndpoints'
 import { showMessage } from 'react-native-flash-message'
 
 export default function ProductCategoriesScreen ({ navigation, route }) {
@@ -83,7 +83,7 @@ export default function ProductCategoriesScreen ({ navigation, route }) {
 
   const fetchProductCategory = async () => {
     try {
-      const fetchedProductCategory = await getCategoryByRestaurant(route.params.id)
+      const fetchedProductCategory = await getCategoriesByRestaurant(route.params.id)
       setProductCategory(fetchedProductCategory)
     } catch (error) {
       showMessage({
