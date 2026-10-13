@@ -6,8 +6,9 @@ import TextRegular from '../../components/TextRegular'
 import { StyleSheet, FlatList, Pressable, View } from 'react-native'
 import DeleteModal from '../../components/DeleteModal'
 import { getCategoryByRestaurant, getProductsByCategory, getCategory, create, remove } from '../../api/CategoriesEndpoints'
+import { showMessage } from 'react-native-flash-message'
 
-export default function ProductCategoriesScreen({ navigation, route }) {
+export default function ProductCategoriesScreen ({ navigation, route }) {
   const [productCategorie, setProductCategory] = useState({})
   const [productCategorieToBeDeleted, setProductCategorieToBeDeleted] = useState(null)
 
@@ -79,7 +80,7 @@ export default function ProductCategoriesScreen({ navigation, route }) {
 
   const fetchProductCategory = async () => {
     try {
-      const fetchedProductCategory = await getCategory(route.params.id)
+      const fetchedProductCategory = await getCategoryByRestaurant(route.params.id)
       setProductCategory(fetchedProductCategory)
     } catch (error) {
       showMessage({
@@ -89,6 +90,7 @@ export default function ProductCategoriesScreen({ navigation, route }) {
         titleStyle: GlobalStyles.flashTextStyle
       })
     }
+  }
 
   return (
     <View style={styles.container}>
@@ -96,7 +98,7 @@ export default function ProductCategoriesScreen({ navigation, route }) {
         ListHeaderComponent={renderHeader}
         ListEmptyComponent={renderEmptyProductsCategoriesList}
         style={styles.container}
-        data={restaurant.productCategorie}
+        data={productCategorie}
         renderItem={renderProductCategorie}
         keyExtractor={item => item.id.toString()}
       />
