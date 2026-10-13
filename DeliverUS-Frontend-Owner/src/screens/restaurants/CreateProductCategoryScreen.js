@@ -13,7 +13,7 @@ import TextError from '../../components/TextError'
 export default function CreateProductCategoryScreen ({ navigation, route }) {
   const [backendErrors, setBackendErrors] = useState()
 
-  const initialProductValues = { name: null, description: null, price: null, order: null, restaurantId: route.params.id, productCategoryId: null, availability: true }
+  const initialProductValues = { name: null, restaurantId: route.params.id}
   const validationSchema = yup.object().shape({
     name: yup
       .string()
