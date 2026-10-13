@@ -8,7 +8,6 @@ import { checkEntityExists } from '../middlewares/EntityMiddleware.js'
 import { handleValidation } from '../middlewares/ValidationHandlingMiddleware.js'
 
 const loadFileRoutes = (app) => {
-
   app.route('/productCategories/restaurants/:restaurantId')
     .post(
       isLoggedIn,

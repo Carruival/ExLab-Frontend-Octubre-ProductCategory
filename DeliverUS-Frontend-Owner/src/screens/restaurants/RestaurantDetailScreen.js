@@ -23,7 +23,7 @@ export default function RestaurantDetailScreen({ navigation, route }) {
     getNumPendingOrders()
   }, [route])
 
-  const renderHeader = () => {
+  const renderHeader = () => {  
     return (
       <View>
         <ImageBackground source={(restaurant?.heroImage) ? { uri: API_BASE_URL + '/' + restaurant.heroImage, cache: 'force-cache' } : undefined} style={styles.imageBackground}>
@@ -34,6 +34,25 @@ export default function RestaurantDetailScreen({ navigation, route }) {
             <TextRegular textStyle={styles.description}>{restaurant.restaurantCategory ? restaurant.restaurantCategory.name : ''}</TextRegular>
           </View>
         </ImageBackground>
+
+        <Pressable
+          onPress={() => navigation.navigate('ProductCategoriesScreen', { id: restaurant.id })
+          }
+          style={({ pressed }) => [
+            {
+              backgroundColor: pressed
+                ? GlobalStyles.brandGreenTap  
+                : GlobalStyles.brandGreen
+            },
+            styles.button
+          ]}>
+          <View style={[{ flex: 1, flexDirection: 'row', justifyContent: 'center' }]}>
+            <MaterialCommunityIcons name='plus-circle' color={'white'} size={20} />
+            <TextRegular textStyle={styles.text}>
+              View categories
+            </TextRegular>
+          </View>
+        </Pressable>
 
         <Pressable
           onPress={() => navigation.navigate('CreateProductScreen', { id: restaurant.id })
