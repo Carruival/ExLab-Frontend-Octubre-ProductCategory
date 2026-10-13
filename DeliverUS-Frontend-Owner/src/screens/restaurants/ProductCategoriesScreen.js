@@ -51,29 +51,32 @@ export default function ProductCategoriesScreen ({ navigation, route }) {
 
   const renderProductCategorie = ({ item }) => {
     return (
-      <View style={styles.actionButtonsContainer}>
-        <View style={[{ flex: 1, flexDirection: 'row', justifyContent: 'center' }]}>
-          <TextRegular textStyle={styles.text}>
-            {item.name}
-          </TextRegular>
-        </View>
-        <Pressable
-          onPress={() => { setProductCategorieToBeDeleted(item) }}
-          style={({ pressed }) => [
-            {
-              backgroundColor: pressed
-                ? GlobalStyles.brandPrimaryTap
-                : GlobalStyles.brandPrimary
-            },
-            styles.actionButton
-          ]}>
+      <View style={styles.categoryRow}>
+        <TextRegular style={styles.categoryName}>{item.name}</TextRegular>
+        <View style={styles.actionButtonsContainer}>
           <View style={[{ flex: 1, flexDirection: 'row', justifyContent: 'center' }]}>
-            <MaterialCommunityIcons name='delete' color={'white'} size={20} />
             <TextRegular textStyle={styles.text}>
-              Delete
+              {item.name}
             </TextRegular>
           </View>
-        </Pressable>
+          <Pressable
+            onPress={() => { setProductCategorieToBeDeleted(item) }}
+            style={({ pressed }) => [
+              {
+                backgroundColor: pressed
+                  ? GlobalStyles.brandPrimaryTap
+                  : GlobalStyles.brandPrimary
+              },
+              styles.actionButton
+            ]}>
+            <View style={[{ flex: 1, flexDirection: 'row', justifyContent: 'center' }]}>
+              <MaterialCommunityIcons name='delete' color={'white'} size={20} />
+              <TextRegular textStyle={styles.text}>
+                Delete
+              </TextRegular>
+            </View>
+          </Pressable>
+        </View>
       </View>
     )
   }

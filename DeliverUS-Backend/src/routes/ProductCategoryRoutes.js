@@ -48,6 +48,5 @@ const loadFileRoutes = (app) => {
       ProductCategoryMiddleware.checkNoProductsInCategory,
       ProductCategoryController.destroy
     )
-
 }
 export default loadFileRoutes
