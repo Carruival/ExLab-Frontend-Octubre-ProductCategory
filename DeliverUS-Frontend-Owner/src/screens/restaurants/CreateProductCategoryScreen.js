@@ -61,60 +61,6 @@ export default function CreateProductCategoryScreen ({ navigation, route }) {
                 name='name'
                 label='Name:'
               />
-              <InputItem
-                name='description'
-                label='Description:'
-              />
-              <InputItem
-                name='price'
-                label='Price:'
-              />
-              <InputItem
-                name='order'
-                label='Order/position to be rendered:'
-              />
-
-              <DropDownPicker
-                open={open}
-                value={values.productCategoryId}
-                items={productCategories}
-                setOpen={setOpen}
-                onSelectItem={item => {
-                  setFieldValue('productCategoryId', item.value)
-                }}
-                setItems={setProductCategories}
-                placeholder="Select the product category"
-                containerStyle={{ height: 40, marginTop: 20, marginBottom: 20 }}
-                style={{ backgroundColor: GlobalStyles.brandBackground }}
-                dropDownStyle={{ backgroundColor: '#fafafa' }}
-              />
-              <ErrorMessage name={'productCategoryId'} render={msg => <TextError>{msg}</TextError>} />
-
-              <TextRegular>Is it available?</TextRegular>
-              <Switch
-                trackColor={{ false: GlobalStyles.brandSecondary, true: GlobalStyles.brandPrimary }}
-                thumbColor={values.availability ? GlobalStyles.brandSecondary : '#f4f3f4'}
-                // onValueChange={toggleSwitch}
-                value={values.availability}
-                style={styles.switch}
-                onValueChange={value =>
-                  setFieldValue('availability', value)
-                }
-              />
-              <ErrorMessage name={'availability'} render={msg => <TextError>{msg}</TextError>} />
-
-              <Pressable onPress={() =>
-                pickImage(
-                  async result => {
-                    await setFieldValue('image', result)
-                  }
-                )
-              }
-                style={styles.imagePicker}
-              >
-                <TextRegular>Product image: </TextRegular>
-                <Image style={styles.image} source={values.image ? { uri: values.image.assets[0].uri } : defaultProductImage} />
-              </Pressable>
 
               {backendErrors &&
                 backendErrors.map((error, index) => <TextError key={index}>{error.param}-{error.msg}</TextError>)
