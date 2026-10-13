@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as GlobalStyles from '../../styles/GlobalStyles'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import TextRegular from '../../components/TextRegular'

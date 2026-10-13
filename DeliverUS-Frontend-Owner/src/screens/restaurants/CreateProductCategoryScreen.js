@@ -21,13 +21,6 @@ export default function CreateProductCategoryScreen ({ navigation, route }) {
       .required('Name is required')
   })
 
-  useEffect(() => {
-    async function fetchProductCategories() {
-
-    }
-    fetchProductCategories()
-  }, [])
-
   const createProductCategory = async (values) => {
     setBackendErrors([])
     try {
