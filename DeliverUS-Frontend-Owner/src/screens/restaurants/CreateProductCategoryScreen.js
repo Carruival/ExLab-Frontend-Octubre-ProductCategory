@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { StyleSheet, FlatList, Pressable, View, ScrollView } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Pressable, View, ScrollView } from 'react-native'
 import * as yup from 'yup'
 import { showMessage } from 'react-native-flash-message'
 import { create } from '../../api/CategoriesEndpoints'
@@ -7,13 +7,13 @@ import * as GlobalStyles from '../../styles/GlobalStyles'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import InputItem from '../../components/InputItem'
 import TextRegular from '../../components/TextRegular'
-import { ErrorMessage, Formik } from 'formik'
+import { Formik } from 'formik'
 import TextError from '../../components/TextError'
 
 export default function CreateProductCategoryScreen ({ navigation, route }) {
   const [backendErrors, setBackendErrors] = useState()
 
-  const initialProductValues = { name: null, restaurantId: route.params.id}
+  const initialProductValues = { name: null, restaurantId: route.params.id }
   const validationSchema = yup.object().shape({
     name: yup
       .string()
@@ -24,7 +24,7 @@ export default function CreateProductCategoryScreen ({ navigation, route }) {
   const createProductCategory = async (values) => {
     setBackendErrors([])
     try {
-      const createdProductCategory = await create(values)
+      const createdProductCategory = await create(route.params.id, values)
       showMessage({
         message: `Product category ${createdProductCategory.name} succesfully created`,
         type: 'success',

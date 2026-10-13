@@ -12,8 +12,8 @@ function getCategory (id) {
   return get(`/productCategories/${id}`)
 }
 
-function create (data) {
-  return post('/productCategories/restaurants/', data)
+function create (restaurantId, data) {
+  return post(`/productCategories/restaurants/${restaurantId}`, data)
 }
 
 function remove (restaurantId, id) {
