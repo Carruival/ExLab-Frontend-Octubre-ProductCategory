@@ -45,7 +45,17 @@ export default function CreateProductScreen({ navigation, route }) {
 
   useEffect(() => {
     async function fetchProductCategories() {
-
+      try {
+        const fetchedRestaurant = await getCategoriesByRestaurant(route.params.id)
+        setProductCategories(fetchedRestaurant)
+      } catch (error) {
+        showMessage({
+          message: `There was an error while retrieving restaurant details (id ${route.params.id}). ${error}`,
+          type: 'error',
+          style: GlobalStyles.flashStyle,
+          titleStyle: GlobalStyles.flashTextStyle
+        })
+      }
     }
     fetchProductCategories()
   }, [])
