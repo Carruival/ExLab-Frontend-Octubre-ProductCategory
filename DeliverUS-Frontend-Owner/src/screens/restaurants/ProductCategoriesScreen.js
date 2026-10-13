@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import TextRegular from '../../components/TextRegular'
 import { StyleSheet, FlatList, Pressable, View } from 'react-native'
 import DeleteModal from '../../components/DeleteModal'
-import { getCategoriesByRestaurant } from '../../api/CategoriesEndpoints'
+import { getCategoriesByRestaurant, remove } from '../../api/CategoriesEndpoints'
 import { showMessage } from 'react-native-flash-message'
 
 export default function ProductCategoriesScreen ({ navigation, route }) {
@@ -95,6 +95,29 @@ export default function ProductCategoriesScreen ({ navigation, route }) {
     }
   }
 
+  const removeProductCategory = async (productCategory) => {
+    try {
+      await remove(route.params.id, productCategory.id)
+      await fetchProductCategory()
+      setProductCategorieToBeDeleted(null)
+      showMessage({
+        message: `Product category ${productCategory.name} succesfully removed`,
+        type: 'success',
+        style: GlobalStyles.flashStyle,
+        titleStyle: GlobalStyles.flashTextStyle
+      })
+    } catch (error) {
+      console.log(error)
+      setProductCategorieToBeDeleted(null)
+      showMessage({
+        message: `Product category ${productCategory.name} could not be removed.`,
+        type: 'error',
+        style: GlobalStyles.flashStyle,
+        titleStyle: GlobalStyles.flashTextStyle
+      })
+    }
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -105,12 +128,11 @@ export default function ProductCategoriesScreen ({ navigation, route }) {
         renderItem={renderProductCategorie}
         keyExtractor={item => item.id.toString()}
       />
-      {/* <DeleteModal
+      <DeleteModal
         isVisible={productCategorieToBeDeleted !== null}
         onCancel={() => setProductCategorieToBeDeleted(null)}
-        onConfirm={() => removeProduct(productCategorieToBeDeleted)}>
-        <TextRegular>If the product belong to some order, it cannot be deleted.</TextRegular>
-      </DeleteModal> */}
+        onConfirm={() => removeProductCategory(productCategorieToBeDeleted)}>
+      </DeleteModal>
     </View>
   )
 }

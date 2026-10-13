@@ -13,7 +13,7 @@ import DeleteModal from '../../components/DeleteModal'
 import defaultProductImage from '../../../assets/product.jpeg'
 import { API_BASE_URL } from '@env'
 
-export default function RestaurantDetailScreen({ navigation, route }) {
+export default function RestaurantDetailScreen ({ navigation, route }) {
   const [restaurant, setRestaurant] = useState({})
   const [numPendingOrders, setNumPendingOrders] = useState(null)
   const [productToBeDeleted, setProductToBeDeleted] = useState(null)
@@ -23,7 +23,7 @@ export default function RestaurantDetailScreen({ navigation, route }) {
     getNumPendingOrders()
   }, [route])
 
-  const renderHeader = () => {  
+  const renderHeader = () => {
     return (
       <View>
         <ImageBackground source={(restaurant?.heroImage) ? { uri: API_BASE_URL + '/' + restaurant.heroImage, cache: 'force-cache' } : undefined} style={styles.imageBackground}>
@@ -41,7 +41,7 @@ export default function RestaurantDetailScreen({ navigation, route }) {
           style={({ pressed }) => [
             {
               backgroundColor: pressed
-                ? GlobalStyles.brandGreenTap  
+                ? GlobalStyles.brandGreenTap
                 : GlobalStyles.brandGreen
             },
             styles.button
