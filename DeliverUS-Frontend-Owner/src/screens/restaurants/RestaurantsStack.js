@@ -43,13 +43,13 @@ export default function RestaurantsStack () {
         name='CreateProductCategoryScreen'
         component={CreateProductCategoryScreen}
         options={{
-          title: 'Create Product'
+          title: 'Create Product Category'
         }} />
       <Stack.Screen
         name='ProductCategoriesScreen'
         component={ProductCategoriesScreen}
         options={{
-          title: 'View categories'
+          title: 'My categories'
         }} />
       <Stack.Screen
         name='EditRestaurantScreen'
